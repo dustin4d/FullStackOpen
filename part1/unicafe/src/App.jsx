@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {useState} from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+const Button = (props) => {
+  return(
+    <div>
+      <button>{props.text}</button>
+    </div>
+  )
+}
 
+const Feedback = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Give feedback</h1>
+      <Button text="good"></Button>
+      <Button text="neutral"></Button>
+      <Button text="bad"></Button>
+    </div>
+  )
+}
+
+const Total = ({text, totalGood}) => {
+  // if text === good, neutral, bad
+  console.log(text)
+  if (text === 'good') {
+    return (
+      <p>Total good: {totalGood}</p>
+    )
+  }
+
+}
+
+const Stats = (props) => {
+  return(
+    <div>
+      <Total text="good" totalGood={props.totalGood}></Total>
+
+    </div>
+  )
+}
+
+const App = () => {
+
+  const [totalGood, setTotalgood] = useState(0)
+  const [totalNeutral, setTotalNeutral] = useState(0)
+  const [totalBad, setTotalBad] = useState(0)
+
+  return(
+    <div>
+      <Feedback />
+      <h1>Statistics</h1>
+      <Stats totalGood={totalGood}></Stats>
+      <Stats totalNeutral={totalNeutral}></Stats>
+    </div>
   )
 }
 
