@@ -3,16 +3,16 @@ import {useState} from 'react'
 const Button = (props) => {
   return(
     <div>
-      <button>{props.text}</button>
+      <button onClick={props.handleClick}>{props.text}</button>
     </div>
   )
 }
 
-const Feedback = () => {
+const Feedback = (props) => {
   return (
     <div>
       <h1>Give feedback</h1>
-      <Button text="good"></Button>
+      <Button text="good" handleClick={props.handleClick}></Button>
       <Button text="neutral"></Button>
       <Button text="bad"></Button>
     </div>
@@ -47,13 +47,18 @@ const Stats = (props) => {
 
 const App = () => {
 
-  const [totalGood, setTotalgood] = useState(0)
+  const [totalGood, setTotalGood] = useState(0)
   const [totalNeutral, setTotalNeutral] = useState(0)
   const [totalBad, setTotalBad] = useState(0)
 
+  const handleClick = () => {
+    console.log("Click handled")
+  }
+
   return(
     <div>
-      <Feedback />
+      <Feedback handleClick={handleClick}/>
+
       <h1>Statistics</h1>
       <Stats text="good" metric={totalGood}></Stats>
       <Stats text="neutral" metric={totalNeutral}></Stats>
