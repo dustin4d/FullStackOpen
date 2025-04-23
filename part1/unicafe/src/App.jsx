@@ -19,24 +19,30 @@ const Feedback = () => {
   )
 }
 
-const Total = ({text, totalGood}) => {
-  // if text === good, neutral, bad
-  console.log(text)
-  if (text === 'good') {
-    return (
-      <p>Total good: {totalGood}</p>
-    )
-  }
-
+const Total = (props) => {
 }
 
-const Stats = (props) => {
-  return(
-    <div>
-      <Total text="good" totalGood={props.totalGood}></Total>
 
-    </div>
-  )
+const Stats = (props) => {
+    if (props.text === 'good') {
+        return (
+            <>
+            <p>Good reviews: {props.metric}</p>
+            </>
+        )
+    } else if (props.text === 'neutral') {
+        return (
+            <>
+            <p>Neutral reviews: {props.metric}</p>
+            </>
+        )
+    } else if (props.text === 'bad') {
+        return (
+            <>
+            <p>Bad reviews: {props.metric}</p>
+            </>
+        )
+    }
 }
 
 const App = () => {
@@ -49,8 +55,9 @@ const App = () => {
     <div>
       <Feedback />
       <h1>Statistics</h1>
-      <Stats totalGood={totalGood}></Stats>
-      <Stats totalNeutral={totalNeutral}></Stats>
+      <Stats text="good" metric={totalGood}></Stats>
+      <Stats text="neutral" metric={totalNeutral}></Stats>
+      <Stats text="bad" metric={totalBad}></Stats>
     </div>
   )
 }
