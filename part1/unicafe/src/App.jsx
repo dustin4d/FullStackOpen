@@ -6,7 +6,9 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [total, setTotal] = useState(0)
+  const [avg, setAvg] = useState(0)
 
+  // TODO: update average on each handler
   const handleGood = () => {
     const updatedGood = good + 1
     setGood(updatedGood)
@@ -28,7 +30,7 @@ const App = () => {
   return (
     <div>
       <Feedback handleGood={handleGood} handleNeutral={handleNeutral} handleBad={handleBad}/>
-      <Stats metrics={[good, neutral, bad, total]}/>
+      <Stats metrics={[good, neutral, bad, total, avg]}/>
     </div>
   )
 }
@@ -54,6 +56,7 @@ const Stats = (props) => {
       <p>Bad: {props.metrics[2]}</p>
 
       <p>Total: {props.metrics[3]}</p>
+      <p>Average: {props.metrics[4]}</p>
     </div>
   )
 }
