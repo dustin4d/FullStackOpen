@@ -5,26 +5,30 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [total, setTotal] = useState(0)
 
   const handleGood = () => {
-    console.log("Good + 1")
-    setGood(good + 1)
+    const updatedGood = good + 1
+    setGood(updatedGood)
+    setTotal(total + 1)
   }
 
   const handleNeutral = () => {
-    console.log("Neutral + 1")
-    setNeutral(neutral + 1)
+    const updatedNeutral = neutral + 1
+    setNeutral(updatedNeutral)
+    setTotal(total + 1)
   }
 
   const handleBad = () => {
-    console.log("Bad + 1")
-    setBad(bad + 1)
+    const updatedBad = bad + 1
+    setBad(updatedBad)
+    setTotal(total + 1)
   }
 
   return (
     <div>
       <Feedback handleGood={handleGood} handleNeutral={handleNeutral} handleBad={handleBad}/>
-      <Stats metrics={[good, neutral, bad]}/>
+      <Stats metrics={[good, neutral, bad, total]}/>
     </div>
   )
 }
@@ -48,6 +52,8 @@ const Stats = (props) => {
       <p>Good: {props.metrics[0]}</p>
       <p>Neutral: {props.metrics[1]}</p>
       <p>Bad: {props.metrics[2]}</p>
+
+      <p>Total: {props.metrics[3]}</p>
     </div>
   )
 }
