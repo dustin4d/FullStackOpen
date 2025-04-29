@@ -1,47 +1,52 @@
 import { useState } from 'react'
 
 const App = () => {
+  // WE'RE MOVING IT TO AN OBJECT
+  const [feedback, setFeedback] = useState({
+  good: 0,
+  neutral: 0,
+  bad: 0,
+  total: 0,
+  avg: 0
+});
 
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
-  const [total, setTotal] = useState(0)
-  const [avg, setAvg] = useState(0)
+console.log(feedback)
 
-  // TODO: update average on each handler
-  const handleGood = () => {
-    const updatedGood = good + 1
-    setGood(updatedGood)
-    setTotal(total + 1)
-  }
+  const handlers = {
+    good: () => {
+      console.log(feedback)
+      setTotal(total + 1)
+    },
 
-  const handleNeutral = () => {
-    const updatedNeutral = neutral + 1
-    setNeutral(updatedNeutral)
-    setTotal(total + 1)
-  }
+    neutral: () => {
+      const updatedNeutral = neutral + 1
+      setNeutral(updatedNeutral)
+      setTotal(total + 1)
+    },
 
-  const handleBad = () => {
-    const updatedBad = bad + 1
-    setBad(updatedBad)
-    setTotal(total + 1)
+    bad: () => {
+      const updatedBad = bad + 1
+      setBad(updatedBad)
+      setTotal(total + 1)
+    }
   }
 
   return (
     <div>
-      <Feedback handleGood={handleGood} handleNeutral={handleNeutral} handleBad={handleBad}/>
-      <Stats metrics={[good, neutral, bad, total, avg]}/>
+      <Feedback handlers={handlers}/>
+      <Stats />
     </div>
   )
 }
 
 const Feedback = (props) => {
+  console.log(props)
     return (
         <div>
             <h1>Give feedback</h1>
-            <button text='good' onClick={props.handleGood}>good</button>
-            <button text='neutral' onClick={props.handleNeutral}>neutral</button>
-            <button text='bad' onClick={props.handleBad}>bad</button>
+            <button onClick={props.handlers.good}>good</button>
+            <button>neutral</button>
+            <button>bad</button>
             <hr></hr>
         </div>
     )
@@ -51,12 +56,12 @@ const Stats = (props) => {
   return (
     <div>
       <h1>Statistics</h1>
-      <p>Good: {props.metrics[0]}</p>
-      <p>Neutral: {props.metrics[1]}</p>
-      <p>Bad: {props.metrics[2]}</p>
+      <p>Good: </p>
+      <p>Neutral: </p>
+      <p>Bad: </p>
 
-      <p>Total: {props.metrics[3]}</p>
-      <p>Average: {props.metrics[4]}</p>
+      <p>Total: </p>
+      <p>Average: </p>
     </div>
   )
 }
