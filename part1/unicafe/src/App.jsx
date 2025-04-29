@@ -7,19 +7,46 @@ const App = () => {
     bad: 0,
   })
 
-  // todo: fix async state renders, but this works
   const handleGood = () => {
-    const newFeedback = {
-      ...feedback,
-      good: feedback.good + 1
-    }
-    setFeedback(newFeedback)
-    console.log(`Feedback state after click: ${feedback.good}`)
+    setFeedback(prev => {
+      const newFeedback = prev.good + 1
+      const update = {
+        ...prev,
+        good: newFeedback,
+      }
+
+      return update
+    })
+  }
+
+  const handleNeutral = () => {
+    setFeedback(prev => {
+      const newFeedback = prev.neutral + 1
+      const update = {
+        ...prev,
+        neutral: newFeedback,
+      }
+
+      return update
+    })
+  }
+
+  const handleBad = () => {
+    setFeedback(prev => {
+      const newFeedback = prev.bad + 1
+      const update = {
+        ...prev,
+        bad: newFeedback,
+      }
+
+      return update
+    })
   }
 
   return(
     <div>
-      <Feedback handleGood={handleGood}/>
+      <Feedback handleGood={handleGood} handleNeutral={handleNeutral} handleBad={handleBad}/>
+      <Stats feedback={feedback}/>
     </div>
   )
 }
@@ -29,8 +56,8 @@ const Feedback = (props) => {
         <div>
             <h1>Give feedback</h1>
             <button onClick={props.handleGood}>good</button>
-            <button>neutral</button>
-            <button>bad</button>
+            <button onClick={props.handleNeutral}>neutral</button>
+            <button onClick={props.handleBad}>bad</button>
             <hr></hr>
         </div>
     )
@@ -40,9 +67,9 @@ const Stats = (props) => {
   return (
     <div>
       <h1>Statistics</h1>
-      <p>Good: </p>
-      <p>Neutral: </p>
-      <p>Bad: </p>
+      <p>Good: {props.feedback.good}</p>
+      <p>Neutral: {props.feedback.neutral}</p>
+      <p>Bad: {props.feedback.bad}</p>
 
       <p>Total: </p>
       <p>Average: </p>
