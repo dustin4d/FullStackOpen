@@ -68,18 +68,45 @@ const App = () => {
     </div>
   )
 }
-
+/* 
+ * FEEDBACK AND BUTTONS
+ */
 const Feedback = (props) => {
     return (
         <div>
             <h1>Give feedback</h1>
-            <button onClick={props.handleGood}>good</button>
-            <button onClick={props.handleNeutral}>neutral</button>
-            <button onClick={props.handleBad}>bad</button>
+            <Button text='good' handleGood={props.handleGood} />
+            <Button text='neutral' handleNeutral={props.handleNeutral}/>
+            <Button text='bad' handleBad={props.handleBad} />
             <hr></hr>
         </div>
     )
 }
+
+const Button = (props) => {
+  if (props.text === 'good') {
+    return (
+      <button onClick={props.handleGood}>Good</button>
+    )
+  }
+
+  if (props.text === 'neutral') {
+    return (
+      <button onClick={props.handleNeutral}>Neutral</button>
+    )
+  }
+
+  if (props.text === 'bad') {
+    return (
+      <button onClick={props.handleBad}>Bad</button>
+    )
+  }
+}
+
+
+/*
+ * STATS AND SHIT
+ */
 
 const Stats = (props) => {
   if (props.feedback.total === 0) {
