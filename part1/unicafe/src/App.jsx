@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
 const App = () => {
+  /*
+   * MAIN APPLICATION STATE
+   */
+
   const [feedback, setFeedback] = useState({
     good: 0,
     neutral: 0,
@@ -8,6 +12,10 @@ const App = () => {
     total: 0,
     avg: 0,
   })
+
+  /*
+   * EVENT HANDLERS
+   */
 
   const handleGood = () => {
     setFeedback(prev => {
@@ -71,6 +79,7 @@ const App = () => {
 /* 
  * FEEDBACK AND BUTTONS
  */
+
 const Feedback = (props) => {
     return (
         <div>
