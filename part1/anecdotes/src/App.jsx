@@ -14,9 +14,17 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
 
+  const getQuote = () => { // gen a rand num between 0 and anecdotes.length through updater function
+    setSelected(() => {
+      const randomIndex = Math.floor(Math.random() * anecdotes.length) 
+      return randomIndex
+    })
+  }
+
   return (
     <div>
-      {anecdotes[selected]}
+      <p>{anecdotes[selected]}</p>
+      <button onClick={getQuote}>Get a new quote</button>
     </div>
   )
 }
