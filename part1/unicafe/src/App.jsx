@@ -82,6 +82,12 @@ const Feedback = (props) => {
 }
 
 const Stats = (props) => {
+  if (props.feedback.total === 0) {
+    return (
+      <p>No feedback given.</p>
+    )
+  }
+
   return (
     <div>
       <h1>Statistics</h1>
