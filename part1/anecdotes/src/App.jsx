@@ -11,8 +11,18 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.',
   ]
-
+  
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([])
+
+  const getVote = () => {
+    setVotes(prev => {
+      const copy = [...prev]
+      // get the index of the current quote
+      console.log(selected)
+      // then inject that index's state or smth
+    })
+  }
 
   const getQuote = () => { // gen a rand num between 0 and anecdotes.length through updater function
     setSelected(() => {
@@ -25,6 +35,7 @@ const App = () => {
     <div>
       <p>{anecdotes[selected]}</p>
       <button onClick={getQuote}>Get a new quote</button>
+      <button onClick={getVote}>Like</button>
     </div>
   )
 }
