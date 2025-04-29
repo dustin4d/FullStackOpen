@@ -118,14 +118,46 @@ const Stats = (props) => {
   return (
     <div>
       <h1>Statistics</h1>
-      <p>Good: {props.feedback.good}</p>
-      <p>Neutral: {props.feedback.neutral}</p>
-      <p>Bad: {props.feedback.bad}</p>
+      <StatsLine text='good' value={props.feedback.good} />
+      <StatsLine text='neutral' value={props.feedback.neutral} />
+      <StatsLine text='bad' value={props.feedback.bad} />
 
-      <p>Total: {props.feedback.total}</p>
-      <p>Average: {props.feedback.avg}</p>
+      <StatsLine text='total' value={props.feedback.total} />
+      <StatsLine text='average' value={props.feedback.avg} />
     </div>
   )
+}
+
+const StatsLine = (props) => {
+  if (props.text === 'good') {
+    return (
+      <p>Good: {props.value}</p>
+    )
+  }
+
+  if (props.text === 'neutral') {
+    return (
+      <p>Neutral: {props.value}</p>
+    )
+  }
+
+  if (props.text === 'bad') {
+    return (
+      <p>Bad: {props.value}</p>
+    )
+  }
+
+  if (props.text === 'total') {
+    return (
+      <p>Total: {props.value}</p>
+    )
+  }
+
+  if (props.text === 'average') {
+    return (
+      <p>Average: {props.value}</p>
+    )
+  }
 }
 
 export default App
