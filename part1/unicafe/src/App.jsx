@@ -1,50 +1,34 @@
 import { useState } from 'react'
 
 const App = () => {
-  // WE'RE MOVING IT TO AN OBJECT
   const [feedback, setFeedback] = useState({
-  good: 0,
-  neutral: 0,
-  bad: 0,
-  total: 0,
-  avg: 0
-});
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  })
 
-console.log(feedback)
-
-  const handlers = {
-    good: () => {
-      console.log(feedback)
-      setTotal(total + 1)
-    },
-
-    neutral: () => {
-      const updatedNeutral = neutral + 1
-      setNeutral(updatedNeutral)
-      setTotal(total + 1)
-    },
-
-    bad: () => {
-      const updatedBad = bad + 1
-      setBad(updatedBad)
-      setTotal(total + 1)
+  // todo: fix async state renders, but this works
+  const handleGood = () => {
+    const newFeedback = {
+      ...feedback,
+      good: feedback.good + 1
     }
+    setFeedback(newFeedback)
+    console.log(`Feedback state after click: ${feedback.good}`)
   }
 
-  return (
+  return(
     <div>
-      <Feedback handlers={handlers}/>
-      <Stats />
+      <Feedback handleGood={handleGood}/>
     </div>
   )
 }
 
 const Feedback = (props) => {
-  console.log(props)
     return (
         <div>
             <h1>Give feedback</h1>
-            <button onClick={props.handlers.good}>good</button>
+            <button onClick={props.handleGood}>good</button>
             <button>neutral</button>
             <button>bad</button>
             <hr></hr>
