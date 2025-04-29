@@ -118,12 +118,15 @@ const Stats = (props) => {
   return (
     <div>
       <h1>Statistics</h1>
-      <StatsLine text='good' value={props.feedback.good} />
-      <StatsLine text='neutral' value={props.feedback.neutral} />
-      <StatsLine text='bad' value={props.feedback.bad} />
-
-      <StatsLine text='total' value={props.feedback.total} />
-      <StatsLine text='average' value={props.feedback.avg} />
+      <table>
+        <tbody>
+        <StatsLine text='good' value={props.feedback.good} />
+        <StatsLine text='neutral' value={props.feedback.neutral} />
+        <StatsLine text='bad' value={props.feedback.bad} />
+        <StatsLine text='total' value={props.feedback.total} />
+        <StatsLine text='average' value={props.feedback.avg} />
+        </tbody>
+      </table>
     </div>
   )
 }
@@ -131,31 +134,56 @@ const Stats = (props) => {
 const StatsLine = (props) => {
   if (props.text === 'good') {
     return (
-      <p>Good: {props.value}</p>
+      <>
+      <tr>
+        <td>Good:</td> 
+        <td>{props.value}</td>
+      </tr>
+      </>
     )
   }
 
   if (props.text === 'neutral') {
     return (
-      <p>Neutral: {props.value}</p>
+      <>
+      <tr>
+        <td>Neutral:</td> 
+        <td>{props.value}</td>
+      </tr>
+      </>
     )
   }
 
   if (props.text === 'bad') {
     return (
-      <p>Bad: {props.value}</p>
+    <>
+      <tr>
+        <td>Bad:</td> 
+        <td>{props.value}</td>
+      </tr>
+    </>
     )
   }
 
   if (props.text === 'total') {
     return (
-      <p>Total: {props.value}</p>
+      <>
+      <tr>
+        <td>Total:</td> 
+        <td>{props.value}</td>
+      </tr>
+      </>
     )
   }
 
   if (props.text === 'average') {
     return (
-      <p>Average: {props.value}</p>
+      <>
+      <tr>
+        <td>Average:</td> 
+        <td>{props.value}</td>
+      </tr>
+      </>
     )
   }
 }
