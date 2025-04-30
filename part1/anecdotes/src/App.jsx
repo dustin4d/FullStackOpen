@@ -13,14 +13,22 @@ const App = () => {
   ]
   
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState([])
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
   const getVote = () => {
     setVotes(prev => {
+      // Create a copy of the array
       const copy = [...prev]
-      // get the index of the current quote
-      console.log(selected)
-      // then inject that index's state or smth
+
+      // Increment the value of the current index
+      if (copy[selected] === undefined) {
+        copy[selected] = 1
+      } else {
+        copy[selected] += 1
+      }
+      
+      // Return the updated copy to state
+      return copy
     })
   }
 
@@ -34,6 +42,7 @@ const App = () => {
   return (
     <div>
       <p>{anecdotes[selected]}</p>
+      <p>Likes: {votes[selected]}</p>
       <button onClick={getQuote}>Get a new quote</button>
       <button onClick={getVote}>Like</button>
     </div>
