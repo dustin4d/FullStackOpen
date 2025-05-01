@@ -13,7 +13,7 @@ const App = () => {
   ]
   
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0])
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0])
   const [top, setTop] = useState(0) // points to the index of `votes` for top voted
 
   const getVote = () => {
@@ -29,13 +29,8 @@ const App = () => {
       }
 
       // update the top voted and send to state
-      let newTop = 0
-      for (let i = 0; i < copy.length; i++) {
-        if (copy[i] > Math.max(...prev)) {
-          newTop = i
-        }
-      }
-
+      const maxVotes = Math.max(...copy)
+      const newTop = copy.indexOf(maxVotes)
       setTop(newTop) // send top valued index to state
 
       // Return the updated copy to state
@@ -59,16 +54,8 @@ const App = () => {
       <hr/>
       <h1>Top Voted Quote</h1>
       <p>{anecdotes[top]}</p>
-      <p>Likes: {votes}</p>
+      <p>Likes: {votes[top]}</p>
     
-    </div>
-  )
-}
-
-const Top = (props) => {
-  return (
-    <div>
-      <p></p>
     </div>
   )
 }
