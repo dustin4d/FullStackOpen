@@ -29,8 +29,8 @@ const App = () => {
       }
 
       // update the top voted and send to state
-      const maxVotes = Math.max(...copy)
-      const newTop = copy.indexOf(maxVotes)
+      const maxVotes = Math.max(...copy) // find the top value of the copied array
+      const newTop = copy.indexOf(maxVotes) // save the index of that top value
       setTop(newTop) // send top valued index to state
 
       // Return the updated copy to state
